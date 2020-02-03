@@ -1,6 +1,6 @@
 const initialState = {
   loginInfo: {
-    email: null,
+    username: null,
     password: null,
   },
   registerInfo: {
@@ -12,12 +12,12 @@ const initialState = {
 
 const tempReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'UPDATE_LOGIN_EMAIL':
+    case 'UPDATE_LOGIN_USR':
       return {
         ...state,
         loginInfo: {
           ...state.loginInfo,
-          email: action.payload,
+          username: action.payload,
         },
       };
     case 'UPDATE_LOGIN_PASSWORD':

@@ -32,10 +32,10 @@ const StartPageCSS = StyleSheet.create({
     justifyContent: 'space-between',
     width: '90%',
   },
-  userBtn: {
+  userBtnLogin: {
     backgroundColor: '#66dac7',
     padding: 15,
-    width: '48%',
+    width: '100%',
   },
   userBtnText: {
     fontSize: 18,
