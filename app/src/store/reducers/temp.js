@@ -9,7 +9,7 @@ const initialState = {
     // rePassword: null
   },
   status: {
-    isLoading: true,
+    isLoading: false,
   },
 };
 

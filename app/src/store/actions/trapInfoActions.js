@@ -37,3 +37,10 @@ export const updateCurTrap = id => {
     payload: id,
   };
 };
+
+export const clearCurTrap = () => {
+  return {
+    type: 'CLEAR_CURRENT_TRAP',
+    payload: null,
+  };
+};

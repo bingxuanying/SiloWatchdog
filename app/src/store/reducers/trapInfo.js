@@ -28,6 +28,14 @@ const trapInfoReducer = (state = initialState, action) => {
           id: action.payload,
         },
       };
+    case 'CLEAR_CURRENT_TRAP':
+      return {
+        ...state,
+        currentTrap: {
+          id: null,
+          data: null,
+        },
+      };
 
     default:
       return state;
