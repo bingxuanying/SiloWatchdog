@@ -9,13 +9,15 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import store from './src/store/store';
-import StartPage from './src/pages/startPage';
+import StartPage from './src/component/pages/startPage';
+import TrapLstPage from './src/component/pages/trapLstPage';
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <StartPage />
+        {/* <StartPage /> */}
+        <TrapLstPage />
       </Provider>
     );
   }

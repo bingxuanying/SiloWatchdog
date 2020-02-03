@@ -8,6 +8,9 @@ const initialState = {
     password: null,
     // rePassword: null
   },
+  status: {
+    isLoading: true,
+  },
 };
 
 const tempReducer = (state = initialState, action) => {
@@ -35,6 +38,23 @@ const tempReducer = (state = initialState, action) => {
           ...state.loginInfo,
           email: null,
           password: null,
+        },
+      };
+
+    case 'FETCH_DATA_INIT':
+      return {
+        ...state,
+        status: {
+          ...state.status,
+          isLoading: true,
+        },
+      };
+    case 'FETCH_DATA_DONE':
+      return {
+        ...state,
+        status: {
+          ...state.status,
+          isLoading: false,
         },
       };
 

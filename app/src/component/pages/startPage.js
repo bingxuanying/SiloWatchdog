@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, TouchableOpacity, StatusBar} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
 import styles from './startPage.css';
 import {connect} from 'react-redux';
-import {tempActions} from '../store/actions';
+import {tempActions} from '../../store/actions';
 
 class StartPage extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Text style={styles.title}>Silo Watchdog</Text>
         <TextInput
           style={styles.input}
@@ -35,10 +41,11 @@ class StartPage extends Component {
             <Text>Signup</Text>
           </TouchableOpacity>
         </View> */}
-      </View>
+      </SafeAreaView>
     );
   }
 }
+
 const mapStateToProps = state => {
   // console.log(state.plan[0].home);
   return {
