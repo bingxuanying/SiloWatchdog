@@ -8,9 +8,15 @@ const TrapLstPageCSS = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#2e4158',
   },
+  title: {
+    fontSize: 30,
+    textAlign: 'center',
+    fontFamily: 'AppleSDGothicNeo-Bold',
+    marginVertical: 20,
+    color: '#fff',
+  },
   trapLst: {
     width: '90%',
-    marginTop: 20,
   },
   trapBlock: {
     width: '100%',

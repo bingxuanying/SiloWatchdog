@@ -19,6 +19,7 @@ class TrapLstPage extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
+        <Text style={styles.title}>Trap ID List</Text>
         {this.props.isLoading === true ? (
           <ActivityIndicator />
         ) : (
