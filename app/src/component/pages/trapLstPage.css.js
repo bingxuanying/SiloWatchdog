@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
 
 const TrapLstPageCSS = StyleSheet.create({
   container: {
