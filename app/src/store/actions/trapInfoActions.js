@@ -13,13 +13,13 @@ export const fetchTrapLst = () => {
       .get('/api/fetchTrapIDs')
       .then(res => {
         dispatch({
-          type: 'FETCH_TRAP_DATA_DONE',
+          type: 'FETCH_TRAP_LST_DONE',
           payload: res.data,
         });
       })
       .catch(err => {
         dispatch({
-          type: 'FETCH_TRAP_DATA_ERR',
+          type: 'FETCH_TRAP_LST_ERR',
           payload: err,
         });
       });
@@ -32,9 +32,41 @@ export const fetchTrapLst = () => {
 };
 
 export const updateCurTrap = id => {
-  return {
-    type: 'UPDATE_CURRENT_TRAP',
-    payload: id,
+  return function(dispatch) {
+    dispatch({
+      type: 'UPDATE_CURRENT_TRAP',
+      payload: id,
+    });
+
+    dispatch({
+      type: 'FETCH_DATA_INIT',
+      payload: null,
+    });
+
+    axios
+      .get('/fetchRecordsByID', {
+        params: {
+          id: id,
+        },
+      })
+      .then(res => {
+        dispatch({
+          type: 'FETCH_TRAP_DATA_DONE',
+          payload: res.data,
+        });
+        console.log(res);
+      })
+      .catch(err => {
+        dispatch({
+          type: 'FETCH_TRAP_DATA_ERR',
+          payload: err,
+        });
+      });
+
+    dispatch({
+      type: 'FETCH_DATA_DONE',
+      payload: null,
+    });
   };
 };
 

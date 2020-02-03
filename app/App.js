@@ -18,8 +18,8 @@ class App extends Component {
     return (
       <Provider store={store}>
         {/* <StartPage /> */}
-        {/* <TrapLstPage /> */}
-        <TrapInfoPage />
+        <TrapLstPage />
+        {/* <TrapInfoPage /> */}
       </Provider>
     );
   }
