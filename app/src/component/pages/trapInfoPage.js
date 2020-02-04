@@ -10,29 +10,44 @@ import {connect} from 'react-redux';
 import {trapInfoActions} from '../../store/actions';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCaretSquareLeft} from '@fortawesome/free-solid-svg-icons';
+import {withRouter} from 'react-router-native';
 import styles from './trapInfoPage.css';
 
 class TrapInfoPage extends Component {
+  constructor() {
+    super();
+    this.handleBackBtn = this.handleBackBtn.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchTrapData(this.props.currentTrap.id);
+  }
+
+  handleBackBtn() {
+    this.props.clearCurTrap();
+    this.props.history.goBack();
+  }
+
   render() {
+    var {id, num, data} = this.props.currentTrap;
+
     return (
       <SafeAreaView style={styles.container}>
-        {this.props.isLoading === true ? (
-          <ActivityIndicator />
+        {num === null ? (
+          <ActivityIndicator style={styles.loading} />
         ) : (
           <>
             <View style={styles.head}>
               <TouchableOpacity
                 style={styles.backBtn}
-                onPress={() => this.props.clearCurTrap()}>
+                onPress={this.handleBackBtn}>
                 <FontAwesomeIcon
                   icon={faCaretSquareLeft}
                   style={styles.backBtnIcon}
                   size={41}
                 />
               </TouchableOpacity>
-              <Text style={styles.title}>
-                Trap #{this.props.currentTrap.id}
-              </Text>
+              <Text style={styles.title}>Trap #{id}</Text>
             </View>
 
             <View style={styles.imgBlock}></View>
@@ -40,10 +55,29 @@ class TrapInfoPage extends Component {
             <View style={styles.infoBlock}>
               <View style={styles.infoBar}>
                 <View style={styles.infoBarTitle}>
+                  <Text style={styles.subtitle}>
+                    Time{num === 0 ? ' (Latest)' : null}
+                  </Text>
+                </View>
+                <View style={styles.infoBarContent}>
+                  <Text style={styles.contentText}>
+                    {data[num]
+                      ? data[num].timeStamp
+                          .substring(0, data[num].timeStamp.lastIndexOf(':'))
+                          .replace('T', ' ')
+                      : 'Not Available'}
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.infoBar}>
+                <View style={styles.infoBarTitle}>
                   <Text style={styles.subtitle}>Insect Count</Text>
                 </View>
                 <View style={styles.infoBarContent}>
-                  <Text style={styles.contentText}>Sample</Text>
+                  <Text style={styles.contentText}>
+                    {data[num] ? data[num].particleCount : 'Not Available'}
+                  </Text>
                 </View>
               </View>
 
@@ -52,7 +86,9 @@ class TrapInfoPage extends Component {
                   <Text style={styles.subtitle}>Trap Location</Text>
                 </View>
                 <View style={styles.infoBarContent}>
-                  <Text style={styles.contentText}>Sample</Text>
+                  <Text style={styles.contentText}>
+                    {data[num] ? data[num].trapLocation : 'Not Available'}
+                  </Text>
                 </View>
               </View>
 
@@ -61,7 +97,9 @@ class TrapInfoPage extends Component {
                   <Text style={styles.subtitle}>Temprature</Text>
                 </View>
                 <View style={styles.infoBarContent}>
-                  <Text style={styles.contentText}>Sample</Text>
+                  <Text style={styles.contentText}>
+                    {data[num] ? data[num].temperature : 'Not Available'} Celc
+                  </Text>
                 </View>
               </View>
 
@@ -70,8 +108,38 @@ class TrapInfoPage extends Component {
                   <Text style={styles.subtitle}>Humidity</Text>
                 </View>
                 <View style={styles.infoBarContent}>
-                  <Text style={styles.contentText}>Sample</Text>
+                  <Text style={styles.contentText}>
+                    {data[num] ? data[num].humidity + '% RH' : 'Not Available'}
+                  </Text>
                 </View>
+              </View>
+
+              <View style={styles.toolBar}>
+                {num === 0 ? (
+                  <View style={styles.pageBtn_Disable}>
+                    <Text style={styles.pageText_Disable}>Pre</Text>
+                  </View>
+                ) : (
+                  <TouchableOpacity
+                    style={styles.pageBtn}
+                    onPress={() => this.props.preTrapData()}>
+                    <Text style={styles.pageText}>Pre</Text>
+                  </TouchableOpacity>
+                )}
+
+                {data === null || num === data.length - 1 ? (
+                  <View style={styles.pageBtn_Disable}>
+                    <Text style={styles.pageText_Disable}>Next</Text>
+                  </View>
+                ) : (
+                  <TouchableOpacity
+                    style={styles.pageBtn}
+                    onPress={() => {
+                      this.props.nextTrapData();
+                    }}>
+                    <Text style={styles.pageText}>Next</Text>
+                  </TouchableOpacity>
+                )}
               </View>
             </View>
           </>
@@ -88,10 +156,15 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = () => {
   return {
     clearCurTrap: trapInfoActions.clearCurTrap,
+    fetchTrapData: trapInfoActions.fetchTrapData,
+    preTrapData: trapInfoActions.preTrapData,
+    nextTrapData: trapInfoActions.nextTrapData,
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps())(TrapInfoPage);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps())(TrapInfoPage),
+);

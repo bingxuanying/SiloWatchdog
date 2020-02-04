@@ -9,6 +9,7 @@ import {
 import styles from './trapLstPage.css';
 import {connect} from 'react-redux';
 import {trapInfoActions} from '../../store/actions';
+import {withRouter} from 'react-router-native';
 
 class TrapLstPage extends Component {
   componentDidMount() {
@@ -18,22 +19,31 @@ class TrapLstPage extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>Trap ID List</Text>
-        {this.props.isLoading === true ? (
-          <ActivityIndicator />
+        {this.props.trapLst === null && this.props.isLoading === false ? (
+          <Text style={styles.title}>No Trap Available</Text>
         ) : (
-          <FlatList
-            style={styles.trapLst}
-            data={this.props.trapLst}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                style={styles.trapBlock}
-                onPress={() => this.props.updateCurTrap(item)}>
-                <Text style={styles.trapContent}>{item}</Text>
-              </TouchableOpacity>
+          <>
+            <Text style={styles.title}>Trap ID List</Text>
+            {this.props.isLoading === true ? (
+              <ActivityIndicator />
+            ) : (
+              <FlatList
+                style={styles.trapLst}
+                data={this.props.trapLst}
+                renderItem={({item}) => (
+                  <TouchableOpacity
+                    style={styles.trapBlock}
+                    onPress={() => {
+                      this.props.updateCurTrap(item);
+                      this.props.history.push('/Info');
+                    }}>
+                    <Text style={styles.trapContent}>{item}</Text>
+                  </TouchableOpacity>
+                )}
+                keyExtractor={item => item.toString()}
+              />
             )}
-            keyExtractor={item => item.toString()}
-          />
+          </>
         )}
       </SafeAreaView>
     );
@@ -55,4 +65,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps())(TrapLstPage);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps())(TrapLstPage),
+);

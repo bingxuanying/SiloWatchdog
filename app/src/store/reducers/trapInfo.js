@@ -54,6 +54,23 @@ const trapInfoReducer = (state = initialState, action) => {
         err: action.payload,
       };
 
+    case 'PRE_DATA':
+      return {
+        ...state,
+        currentTrap: {
+          ...state.currentTrap,
+          num: state.currentTrap.num - 1,
+        },
+      };
+    case 'NEXT_DATA':
+      return {
+        ...state,
+        currentTrap: {
+          ...state.currentTrap,
+          num: state.currentTrap.num + 1,
+        },
+      };
+
     default:
       return state;
   }

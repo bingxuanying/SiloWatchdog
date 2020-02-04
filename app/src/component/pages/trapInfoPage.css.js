@@ -7,6 +7,9 @@ const TrapInfoPageCSS = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#2e4158',
   },
+  loading: {
+    marginTop: '50%',
+  },
   head: {
     width: '100%',
     flexDirection: 'row',
@@ -77,6 +80,36 @@ const TrapInfoPageCSS = StyleSheet.create({
     fontSize: 15,
     fontFamily: 'AppleSDGothicNeo-Bold',
     color: '#000',
+  },
+  toolBar: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 10,
+  },
+  pageBtn: {
+    width: '30%',
+    padding: 10,
+    backgroundColor: '#66dac7',
+    borderRadius: 3,
+  },
+  pageText: {
+    fontSize: 15,
+    fontFamily: 'AppleSDGothicNeo-Bold',
+    color: '#2e4158',
+    textAlign: 'center',
+  },
+  pageBtn_Disable: {
+    width: '30%',
+    padding: 10,
+    backgroundColor: '#abb8c3',
+    borderRadius: 3,
+  },
+  pageText_Disable: {
+    fontSize: 15,
+    fontFamily: 'AppleSDGothicNeo-Bold',
+    color: '#fff',
+    textAlign: 'center',
   },
 });
 

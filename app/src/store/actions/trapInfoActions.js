@@ -32,12 +32,14 @@ export const fetchTrapLst = () => {
 };
 
 export const updateCurTrap = id => {
-  return function(dispatch) {
-    dispatch({
-      type: 'UPDATE_CURRENT_TRAP',
-      payload: id,
-    });
+  return {
+    type: 'UPDATE_CURRENT_TRAP',
+    payload: id,
+  };
+};
 
+export const fetchTrapData = id => {
+  return function(dispatch) {
     dispatch({
       type: 'FETCH_DATA_INIT',
       payload: null,
@@ -54,7 +56,6 @@ export const updateCurTrap = id => {
           type: 'FETCH_TRAP_DATA_DONE',
           payload: res.data,
         });
-        console.log(res);
       })
       .catch(err => {
         dispatch({
@@ -73,6 +74,20 @@ export const updateCurTrap = id => {
 export const clearCurTrap = () => {
   return {
     type: 'CLEAR_CURRENT_TRAP',
+    payload: null,
+  };
+};
+
+export const preTrapData = () => {
+  return {
+    type: 'PRE_DATA',
+    payload: null,
+  };
+};
+
+export const nextTrapData = () => {
+  return {
+    type: 'NEXT_DATA',
     payload: null,
   };
 };

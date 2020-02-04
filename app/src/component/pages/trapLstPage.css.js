@@ -7,6 +7,9 @@ const TrapLstPageCSS = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#2e4158',
   },
+  loading: {
+    marginTop: '50%',
+  },
   title: {
     fontSize: 30,
     textAlign: 'center',

@@ -9,8 +9,18 @@ import {
 import styles from './startPage.css';
 import {connect} from 'react-redux';
 import {tempActions} from '../../store/actions';
+import {withRouter} from 'react-router-native';
 
 class StartPage extends Component {
+  constructor() {
+    super();
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  handleLogin() {
+    this.props.history.push('/Lst');
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -27,7 +37,9 @@ class StartPage extends Component {
           secureTextEntry
         />
         <View style={styles.userBtnContainer}>
-          <TouchableOpacity style={styles.userBtnLogin}>
+          <TouchableOpacity
+            style={styles.userBtnLogin}
+            onPress={this.handleLogin}>
             <Text style={styles.userBtnText}>Login</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.userBtn}>
@@ -61,4 +73,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps())(StartPage);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps())(StartPage),
+);
