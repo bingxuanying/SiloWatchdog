@@ -5,6 +5,9 @@ import {
   TextInput,
   TouchableOpacity,
   SafeAreaView,
+  KeyboardAvoidingView,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import styles from './startPage.css';
 import {connect} from 'react-redux';
@@ -24,37 +27,46 @@ class StartPage extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>Silo Watchdog</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Username"
-          onChangeText={text => this.props.updateLoginUsr(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          onChangeText={text => this.props.updateLoginPassword(text)}
-          secureTextEntry
-        />
-        <View style={styles.userBtnContainer}>
-          <TouchableOpacity
-            style={styles.userBtnLogin}
-            onPress={this.handleLogin}>
-            <Text style={styles.userBtnText}>Login</Text>
-          </TouchableOpacity>
-          {/* <TouchableOpacity style={styles.userBtn}>
-            <Text style={styles.userBtnText}>Signup</Text>
-          </TouchableOpacity> */}
-        </View>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}>
+        <KeyboardAvoidingView style={{flex: 1}} behavior="padding">
+          <SafeAreaView style={styles.container}>
+            <View>
+              <Text style={styles.title}>Silo Watchdog</Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              placeholder="Username"
+              onChangeText={text => this.props.updateLoginUsr(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              onChangeText={text => this.props.updateLoginPassword(text)}
+              secureTextEntry
+            />
+            <View style={styles.userBtnContainer}>
+              <TouchableOpacity
+                style={styles.userBtnLogin}
+                onPress={this.handleLogin}>
+                <Text style={styles.userBtnText}>Login</Text>
+              </TouchableOpacity>
+              {/* <TouchableOpacity style={styles.userBtn}>
+                    <Text style={styles.userBtnText}>Signup</Text>
+                  </TouchableOpacity> */}
+            </View>
 
-        {/* <View>
-          <Text>Not user yet</Text>
-          <TouchableOpacity>
-            <Text>Signup</Text>
-          </TouchableOpacity>
-        </View> */}
-      </SafeAreaView>
+            {/* <View>
+                  <Text>Not user yet</Text>
+                  <TouchableOpacity>
+                    <Text>Signup</Text>
+                  </TouchableOpacity>
+                </View> */}
+          </SafeAreaView>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
     );
   }
 }
