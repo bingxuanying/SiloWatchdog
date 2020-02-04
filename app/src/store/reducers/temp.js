@@ -36,7 +36,7 @@ const tempReducer = (state = initialState, action) => {
         ...state,
         loginInfo: {
           ...state.loginInfo,
-          email: null,
+          username: null,
           password: null,
         },
       };

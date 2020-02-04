@@ -18,6 +18,7 @@ class StartPage extends Component {
   }
 
   handleLogin() {
+    this.props.proceedLogin();
     this.props.history.push('/Lst');
   }
 
@@ -70,6 +71,7 @@ const mapDispatchToProps = dispatch => {
   return {
     updateLoginUsr: tempActions.updateLoginUsr,
     updateLoginPassword: tempActions.updateLoginPassword,
+    proceedLogin: tempActions.proceedLogin,
   };
 };
 

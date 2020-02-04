@@ -1,3 +1,7 @@
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://13.57.57.242:3000';
+
 export const updateLoginUsr = username => {
   return {
     type: 'UPDATE_LOGIN_USR',
@@ -9,6 +13,15 @@ export const updateLoginPassword = password => {
   return {
     type: 'UPDATE_LOGIN_PASSWORD',
     payload: password,
+  };
+};
+
+export const proceedLogin = () => {
+  return function(dispatch) {
+    dispatch({
+      type: 'CLEAR_LOGIN_INFO',
+      payload: null,
+    });
   };
 };
 
