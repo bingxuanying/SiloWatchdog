@@ -26,6 +26,7 @@ const StartPageCSS = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 15,
     marginBottom: 15,
+    borderRadius: 3,
   },
   userBtnContainer: {
     flexDirection: 'row',
@@ -36,10 +37,12 @@ const StartPageCSS = StyleSheet.create({
     backgroundColor: '#66dac7',
     padding: 15,
     width: '100%',
+    borderRadius: 3,
   },
   userBtnText: {
     fontSize: 18,
     textAlign: 'center',
+    fontWeight: 'bold',
   },
 });
 

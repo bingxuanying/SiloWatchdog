@@ -15,8 +15,8 @@ const enhancer = composeEnhancers(
 );
 const store = createStore(allReducers, enhancer);
 
-store.subscribe(() => {
-  console.log('store changed', store.getState());
-});
+// store.subscribe(() => {
+//   console.log('store changed', store.getState());
+// });
 
 export default store;

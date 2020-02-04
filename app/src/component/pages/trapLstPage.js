@@ -12,8 +12,17 @@ import {trapInfoActions} from '../../store/actions';
 import {withRouter} from 'react-router-native';
 
 class TrapLstPage extends Component {
+  constructor() {
+    super();
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchTrapLst();
+  }
+
+  handleLogout() {
+    this.props.history.push('/');
   }
 
   render() {
@@ -40,6 +49,13 @@ class TrapLstPage extends Component {
                     <Text style={styles.trapContent}>{item}</Text>
                   </TouchableOpacity>
                 )}
+                ListFooterComponent={
+                  <TouchableOpacity
+                    style={styles.logoutBtn}
+                    onPress={this.handleLogout}>
+                    <Text style={styles.logoutText}>Logout</Text>
+                  </TouchableOpacity>
+                }
                 keyExtractor={item => item.toString()}
               />
             )}

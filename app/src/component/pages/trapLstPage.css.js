@@ -25,10 +25,23 @@ const TrapLstPageCSS = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 15,
     marginBottom: 10,
+    borderRadius: 3,
   },
   trapContent: {
     textAlign: 'center',
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  logoutBtn: {
+    width: '100%',
+    backgroundColor: '#66dac7',
+    padding: 15,
+    marginBottom: 10,
+    borderRadius: 3,
+  },
+  logoutText: {
+    textAlign: 'center',
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });
