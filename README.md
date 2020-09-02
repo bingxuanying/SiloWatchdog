@@ -1,13 +1,29 @@
-## ProductInfoMobileApp
+# SiloWatchdog
 
-version: 0.0.1
+version: 1.0
 
-Display product info on mobile app by fetching data from backend; First Try on React Native
+React-Native written mobile application runs on both IOS and Android.
 
-## TODO:
 
-GET backend image file
+## Introduction
 
-jwt token authentication
+- Users can monitor camera devices in real-time.
 
-register form
+- The application is written in React-Native.
+
+- The app runs on both IOS and Android.
+
+
+## Deployment
+
+### IOS
+
+1. open XCode
+
+2. use ./app/ios/app.xcodeproj 
+
+### Anroid
+
+1. open Android Studio
+
+2. use ./app/android/build.gradle
