@@ -13,6 +13,7 @@ React-Native written mobile application runs on both IOS and Android.
 
 - The app runs on both IOS and Android.
 
+![](https://github.com/bingxuanying/SiloWatchdog/blob/master/demo.png)
 
 ## Deployment
 
